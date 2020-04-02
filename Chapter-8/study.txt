@@ -1,0 +1,35 @@
+Date: 01/04/2020
+
+->Process Cotrol consists of 3 things: creation of new process, program execution, process termination.
+
+1. Process Identifiers:
+->Every process have a unique non-negetive id.
+->These id's can be reused, as process terminates.
+->Most of UNIX system provides delay in reuse of previous ids so that process don't confuse the new process as old one.
+->There are some special process ids:
+a. PID-0(Swapper process):Used to swap processes. As Unix don't use swapping now a days. So it is replaced by idle process.
+b. PID-1(init process):It is envoked by kernel at end of bootstrap process. It runs until the system shuts down. Kernel panic occurs if it is unable to start it. It doesn't run on super user privlidges. It is a user process. It is a parent to all orphan processes.
+c. PID-2(pagedaemon):Responsible for supporting of virtual memory system.
+
+2. Fork Function:
+->It is used to create new process by currently running process.
+->It returns 0 to child.
+->It reurn child's pid to parent.
+->It returns -1 on error.
+->It returns 0 to child because child can find it's and parent's pid by getpid() and getppid().
+->It returns child pid to parent because there is no function that can help find child's pid to parent.
+->Child copies parent's dataspace,heap,stack.
+->Child do shares paret's text segment.
+->We never know which will run first parent or child. It depen's on system's scheduling algorithm. So synchronization is required. It can be achived by Race Conditions or Signals.
+->All files are shared between parent and child. They use same file table.
+->Pending signals are set epmty for child.
+->Fork is used for two reasons:
+a. When process wants to duplicate itself and handle diffent parts of code simultaniously.
+b. When process also wants to work on a different program.
+->Some systems provide spawn:-fork+exec
+
+3. Vfork functions:
+->Was created with the purpose of executing other programs.
+->Leads to undefined results.
+->Shoudl not be used on portable applications.
+->Child runs on same address space as parent.
