@@ -1,0 +1,1 @@
+#!/home/kira5000/Desktop/Unix-Training/Examples/ex5 foo

@@ -33,3 +33,67 @@ b. When process also wants to work on a different program.
 ->Leads to undefined results.
 ->Shoudl not be used on portable applications.
 ->Child runs on same address space as parent.
+
+Date: 02/04/2020
+
+1. Exit functions:
+->There are five ways in which you can terminate the program: return from main, calling exit, calling _exit or _Exit, returning from start routine from first thread, pthread_exit from last thread.
+->As _exit and _Exit does not call exit handlers, they does not flush standard io
+->exit status is not equal to termination status.
+->Kernel converts exit status to termination status.
+->If parent process terminates before child, init process becomes it's new parent.
+->Kernel keeps small amout of data of terminating process for parent to wait call it and extract it.
+->Until the wait is not called child remains a zombie process.
+
+2. wait and waitpid function:
+->Kernel tells parent that child terminated by sending SIGCHLD signal.
+->By defauls parent chooses to ignore the signal
+->You can also provide function to handle it.
+->The wait program makes parent to wait until one of it's child terminates.
+->If we don't need child exit status than you can pass NULL as an argument.
+->waitpid function provide addition freedom by telling which pid process you want to wait for.
+
+3. waitid function:
+->Provides more flexiblity than waitpid function.
+->Instead of deciding what to do based on pid, it provides idtype argument.
+
+4. wait3 and wait4 function:
+->provides extra argument to store resources used by terminal process.
+
+5. Race Condition:
+->Multiple process trying to acces shared data at same time.
+->Outcome depends on which order process in executed.
+->To avoid race condition: one must be signalling, various forms of Interprocess Communication.
+
+Date: 03/04/2020
+
+1. Exec Functions:
+->When a process wants to run another program.
+->PID doesn't change across exec.
+->The PATH argument specifies diectories sepreted by colon.
+
+2. Process Termination:
+->There is a startup routine that in create by link editor.
+->This startup routine is executed before main.
+->It is provide with various details like command line arguments and enviornment variable.
+->It calles exec to start main functon.
+->Startup routine is considered as starting point or starting address of any program.
+->For main return 0 == exit(0)
+
+3. atexit function:
+->Helps register for exit handlers for the function.
+->Atleast 32 functions can be atexit process.
+->The functions are called from end to start as popping from stack.
+->Exit handlers help flush standard io.
+->No maater wwhere the function is called they are executed at the time of exit of function calling it.
+
+4. Enviornment List:
+->It is an array of character poiters.
+->Each pointer contains address of null terminated string.
+->Address of array of pointers in stored in environ variable.
+->We can use environ variable using getenv and putenv functions.
+
+5.Enviornment Variables:
+->They are in form of: name=value
+->We can only change value of enviornment variables for current and child process.
+->You can not change value for parent process.
