@@ -1,0 +1,9 @@
+1. If the child calls exit, the implementation flushes the standard I/O streams. If this 
+is the only action taken by the library, then we will see no difference from the output
+generated if the child called _exit. If the implementation also closes the standard I/O
+streams, then the end printf executed by parent will not execte and printf returns -1. SO by
+closing the standard output stream we can gain that behaviour.
+
+2. As we are executing vfork so child runs it's result and return it to main(). Then main() terminates
+and is being removed from stack so when parent process tries to return it's result stack is already empty
+hence giving segmentation fault.
