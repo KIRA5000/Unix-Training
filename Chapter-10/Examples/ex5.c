@@ -6,6 +6,7 @@
 jmp_buf env_alrm;
 static void sig_alrm(int signo)
 {
+	printf("Alarm handled\n");
 	longjmp(env_alrm, 1);
 }
 

@@ -1,0 +1,11 @@
+1. Removing infinite for loop from the main function makes the function
+pause run only one time, that's why only one time recive of any signal
+calls the handler and terminates the program.
+
+3. Progress of stack frame:
+main->
+main->sleep2->
+main_sleep2->sig_int->
+main->sleep2->sig_int->sig_alr->
+main->sleep2->                     //due to setjmp sigalr jumps directly to sleep2
+main->
