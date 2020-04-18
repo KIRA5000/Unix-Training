@@ -18,6 +18,6 @@ stejmp haven't been called yet.
 7. Because _exit doesn't do clean up, beacuse it's task for exit handlers but
 _exit() directly transfers the control to the kernel.
 
-8. siginfo might be using real user id because it give the info about which owner
-might really own the process whereas effective user id can only be logged in user
-or root.
+8. siginfo might be sending real id because of process A to send signal to B,
+A must be a root process or have same uid or euid as B's uid or euid. If euid 
+is same then for B to know uid of A su_uid feild is added.
