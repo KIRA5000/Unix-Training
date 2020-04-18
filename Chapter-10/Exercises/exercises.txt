@@ -9,3 +9,15 @@ main_sleep2->sig_int->
 main->sleep2->sig_int->sig_alr->
 main->sleep2->                     //due to setjmp sigalr jumps directly to sleep2
 main->
+
+4. The problem with the following with code can be that alarm timer can run
+out even before getting chance to call setjmp due to race condition, when longjmp
+will be called from within the handler it won't have a place to return to because
+stejmp haven't been called yet.
+
+7. Because _exit doesn't do clean up, beacuse it's task for exit handlers but
+_exit() directly transfers the control to the kernel.
+
+8. siginfo might be using real user id because it give the info about which owner
+might really own the process whereas effective user id can only be logged in user
+or root.
