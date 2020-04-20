@@ -1,0 +1,4 @@
+1. A user logouts when it's login shell is terminated. Login shell's terminated
+info can only be with it's parent when it recieves SIGCHLD signal. In this case
+the parent is the init process. So that's why logout is handled by init. I don't 
+think network logins are handled by init.
