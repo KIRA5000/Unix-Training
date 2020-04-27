@@ -8,6 +8,7 @@ int main(void)
 	int lvar=10;
 	printf("Hello there");
 	pid_t pid=vfork();
+	//printf("Hello there");
 	if(pid==0)
 	{
 		lvar++;
