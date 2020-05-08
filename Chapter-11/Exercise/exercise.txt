@@ -1,0 +1,6 @@
+1. By making memory dynamic it's scope is just not limited to function.
+As the memory address is returned back it's memory is conserved within
+different threads.
+
+4. The second option is the correct choice because first the mutex should
+be unlocked then the signal must be sent to the other threads for condition check.
