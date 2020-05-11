@@ -1,0 +1,11 @@
+Creating thread
+Creating child
+Prepare..
+Parent..
+Parent ran
+Mutex locked by thread
+Creating thread
+Creating child
+Prepare..
+Child..
+Child ran

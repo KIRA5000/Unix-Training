@@ -1,0 +1,13 @@
+1. Displaying the output in the file and in terminal have a simple change that is
+io buffer type. Terminal devices have line buffer where as file have full buffer
+That's why all the printf statements before fork were copied for both child and
+parent because till the time of fork calling the buffer was not flushed. It can
+be solved by setvbuf.
+
+3. You can't make a function 100% async-signal safe by black all signals in beggining
+and unblocking them in end because some signals can't be blocked.
+
+5. We mostly used the child to exec another function which can't be done by threads.
+
+7. We can not because it might conditional variable might be inside the mutex which 
+is already locked by another thread.
