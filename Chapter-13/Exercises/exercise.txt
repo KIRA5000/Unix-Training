@@ -3,3 +3,5 @@ if we chroot to any other directory then it won't be able to find absolute
 path /dev/log. and program will fail.
 
 2. rsyslogd is a session leader.
+
+4. login name is displayed in file "~/Desktop/hello.txt".
