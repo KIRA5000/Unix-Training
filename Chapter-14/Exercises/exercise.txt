@@ -1,0 +1,7 @@
+1. If a read lock is set to the file the write lock by another process will be sent to deadlock.
+
+6. It is not possible because for it to happen the child should already have a lock on a file for parent to stop. And the locks are not inherited across fork().
+
+10. Yes, the access time of the input file has been changed.
+
+11. Closing file after mmap does ot invalidate the Memory Mapped I/O.
