@@ -1,0 +1,12 @@
+3. The following output was displayed: "sh:hello Command Not Found". As popen call shell using exec
+and not shell command named hello exist.
+
+4. On typing "echo $?" we retrived previous commands exit status which came out to be 141. And 141 is
+for SIGPIPE generation in unix. So we kno process was terminated by SIGPIPE.
+
+7. select and poll can't handle it well. They just wait for specific time and then return even if write
+is closed.
+
+9. The pclose() command waits for the exec to terminate. And the return value can be acquired by pclose().
+
+10. 
